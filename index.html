@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AP-CON 規格查詢工具</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --ink: #17202a;
+      --muted: #627083;
+      --line: #d9e1ea;
+      --brand: #0f766e;
+      --brand-dark: #115e59;
+      --accent: #eab308;
+      --soft: #e9f6f4;
+      --shadow: 0 14px 38px rgba(20, 32, 45, .10);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+      background:
+        linear-gradient(180deg, #eff7f5 0, rgba(239, 247, 245, 0) 280px),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    .app {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 20px 14px 36px;
+    }
+
+    header {
+      padding: 12px 2px 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid #b7ddd8;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 7vw, 48px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 760px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0 16px;
+      padding: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    label {
+      display: block;
+      margin: 0 0 7px;
+      color: #314052;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    select,
+    input {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #c8d4df;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      padding: 0 11px;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, .14);
+    }
+
+    select:disabled,
+    input:disabled {
+      cursor: not-allowed;
+      background: #eef2f6;
+      color: #8a96a5;
+    }
+
+    .mode-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      height: 44px;
+      padding: 4px;
+      border: 1px solid #c8d4df;
+      border-radius: 6px;
+      background: #eef4f7;
+    }
+
+    .mode-button {
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: #46576a;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mode-button[aria-pressed="true"] {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 5px 14px rgba(15, 118, 110, .24);
+    }
+
+    .wide-field {
+      grid-column: span 2;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 14px;
+    }
+
+    .runtime-warning {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border: 1px solid #f3c969;
+      border-radius: var(--radius);
+      background: #fff7db;
+      color: #73520d;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .metric {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 20px;
+    }
+
+    .result-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f0f7f6;
+      color: #24403d;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: #fffbea;
+    }
+
+    .part {
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-weight: 700;
+      color: #0b5f59;
+    }
+
+    .empty {
+      padding: 28px 16px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 820px) {
+      .toolbar,
+      .summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        padding: 16px 10px 28px;
+      }
+
+      header {
+        padding-top: 6px;
+      }
+
+      .toolbar,
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        padding: 12px;
+      }
+
+      .result-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .count {
+        white-space: normal;
+      }
+
+      th,
+      td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="eyebrow">AP-CON 固態電容資料庫</div>
+      <h1>規格查詢工具</h1>
+      <p class="subtitle">可用下拉選單逐步篩選，也可切換成關鍵字搜尋並用空白分隔多個條件。表格會即時顯示對應 Part No. 與完整參數。資料目前內嵌 AREA 與 AR5K 兩個系列。</p>
+    </header>
+
+    <div class="runtime-warning" id="runtimeWarning">
+      手機目前只載入了靜態畫面，互動搜尋尚未啟動。請用 Safari 或 Chrome 開啟這個 HTML 檔，不要使用微信或檔案 App 的預覽模式。
+    </div>
+
+    <section class="toolbar" aria-label="查詢條件">
+      <div class="field">
+        <label>搜尋方式</label>
+        <div class="mode-buttons" role="group" aria-label="搜尋方式">
+          <button class="mode-button" type="button" data-mode="dropdown" aria-pressed="true">下拉選單</button>
+          <button class="mode-button" type="button" data-mode="keyword" aria-pressed="false">關鍵字</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="seriesSelect">系列</label>
+        <select id="seriesSelect">
+          <option value="">請選擇系列</option>
+          <option value="AR5K">AR5K</option>
+          <option value="AREA">AREA</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="capSelect">Cap 電容量 (uF)</label>
+        <select id="capSelect">
+          <option value="">全部電容量</option>
+          <option value="100">100 uF</option>
+          <option value="220">220 uF</option>
+          <option value="330">330 uF</option>
+          <option value="470">470 uF</option>
+          <option value="560">560 uF</option>
+          <option value="820">820 uF</option>
+          <option value="1000">1,000 uF</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wvSelect">WV/Vdc 電壓</label>
+        <select id="wvSelect">
+          <option value="">全部電壓</option>
+          <option value="2.5">2.5 V</option>
+          <option value="6.3">6.3 V</option>
+          <option value="16">16 V</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sizeSelect">Size Code</label>
+        <select id="sizeSelect">
+          <option value="">全部尺寸</option>
+          <option value="06X5">06X5</option>
+          <option value="06X8">06X8</option>
+          <option value="08A2">08A2</option>
+          <option value="08X8">08X8</option>
+          <option value="10A2">10A2</option>
+        </select>
+      </div>
+      <div class="field wide-field">
+        <label for="keywordInput">關鍵字搜尋</label>
+        <input id="keywordInput" type="search" placeholder="例如 AR5K 16 06X8，多個條件用空白分隔" autocomplete="off" disabled>
+      </div>
+    </section>
+
+    <section class="summary" aria-label="資料摘要">
+      <div class="metric">
+        <span>目前系列筆數</span>
+        <strong id="seriesCount">9</strong>
+      </div>
+      <div class="metric">
+        <span>查詢結果</span>
+        <strong id="matchCount">9</strong>
+      </div>
+      <div class="metric">
+        <span>最低 ESR</span>
+        <strong id="minEsr">10 mOhm</strong>
+      </div>
+      <div class="metric">
+        <span>最高 Ripple</span>
+        <strong id="maxRipple">5,400 mArms</strong>
+      </div>
+    </section>
+
+    <section>
+      <div class="result-head">
+        <h2>查詢結果</h2>
+        <div class="count" id="activeFilter">全部資料</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>系列</th>
+              <th>WV/Vdc</th>
+              <th>SV</th>
+              <th>Cap (uF)</th>
+              <th>Size Code</th>
+              <th>Leakage Current (uA)</th>
+              <th>ESR (mOhm)</th>
+              <th>Rated Ripple Current (mArms)</th>
+              <th>Part No.</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody">
+            <tr><td><span class="pill">AREA</span></td><td>2.5</td><td>2.9</td><td>560</td><td>06X5</td><td>280</td><td>10</td><td>3,900</td><td class="part">2R5AREA561M06X5</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>2.5</td><td>2.9</td><td>820</td><td>08X8</td><td>410</td><td>10</td><td>5,230</td><td class="part">2R5AREA821M08X8</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>6.3</td><td>7.2</td><td>220</td><td>06X5</td><td>277</td><td>15</td><td>3,160</td><td class="part">6R3AREA221M06X5</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>6.3</td><td>7.2</td><td>330</td><td>06X5</td><td>416</td><td>17</td><td>3,390</td><td class="part">6R3AREA331M06X5</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>6.3</td><td>7.2</td><td>470</td><td>08X8</td><td>592</td><td>15</td><td>4,210</td><td class="part">6R3AREA471M08X8</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>6.3</td><td>7.2</td><td>820</td><td>08A2</td><td>1,033</td><td>12</td><td>4,710</td><td class="part">6R3AREA821M08A2</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>16</td><td>18.4</td><td>100</td><td>06X5</td><td>320</td><td>24</td><td>2,490</td><td class="part">160AREA101M06X5</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>16</td><td>18.4</td><td>100</td><td>06X8</td><td>320</td><td>25</td><td>2,820</td><td class="part">160AREA101M06X8</td></tr>
+            <tr><td><span class="pill">AREA</span></td><td>16</td><td>18.4</td><td>1,000</td><td>10A2</td><td>3,200</td><td>12</td><td>5,400</td><td class="part">160AREA102M10A2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <footer>資料來源：AREA_20230104.pdf、AR5K_20240109.pdf 的 Standard Ratings 表格。SV 為 PDF 中 WV/Vdc 下方括號值。</footer>
+    </section>
+  </main>
+
+  <script>
+    const capacitorData = [
+      { series: "AREA", wv: 2.5, sv: 2.9, cap: 560, sizeCode: "06X5", leakageCurrent: 280, esr: 10, ratedRippleCurrent: 3900, partNo: "2R5AREA561M06X5" },
+      { series: "AREA", wv: 2.5, sv: 2.9, cap: 820, sizeCode: "08X8", leakageCurrent: 410, esr: 10, ratedRippleCurrent: 5230, partNo: "2R5AREA821M08X8" },
+      { series: "AREA", wv: 6.3, sv: 7.2, cap: 220, sizeCode: "06X5", leakageCurrent: 277, esr: 15, ratedRippleCurrent: 3160, partNo: "6R3AREA221M06X5" },
+      { series: "AREA", wv: 6.3, sv: 7.2, cap: 330, sizeCode: "06X5", leakageCurrent: 416, esr: 17, ratedRippleCurrent: 3390, partNo: "6R3AREA331M06X5" },
+      { series: "AREA", wv: 6.3, sv: 7.2, cap: 470, sizeCode: "08X8", leakageCurrent: 592, esr: 15, ratedRippleCurrent: 4210, partNo: "6R3AREA471M08X8" },
+      { series: "AREA", wv: 6.3, sv: 7.2, cap: 820, sizeCode: "08A2", leakageCurrent: 1033, esr: 12, ratedRippleCurrent: 4710, partNo: "6R3AREA821M08A2" },
+      { series: "AREA", wv: 16, sv: 18.4, cap: 100, sizeCode: "06X5", leakageCurrent: 320, esr: 24, ratedRippleCurrent: 2490, partNo: "160AREA101M06X5" },
+      { series: "AREA", wv: 16, sv: 18.4, cap: 100, sizeCode: "06X8", leakageCurrent: 320, esr: 25, ratedRippleCurrent: 2820, partNo: "160AREA101M06X8" },
+      { series: "AREA", wv: 16, sv: 18.4, cap: 1000, sizeCode: "10A2", leakageCurrent: 3200, esr: 12, ratedRippleCurrent: 5400, partNo: "160AREA102M10A2" },
+
+      { series: "AR5K", wv: 2.5, sv: 2.9, cap: 390, sizeCode: "05X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 4180, partNo: "2R5AR5K391M05X8C" },
+      { series: "AR5K", wv: 2.5, sv: 2.9, cap: 560, sizeCode: "05X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 4180, partNo: "2R5AR5K561M05X8C" },
+      { series: "AR5K", wv: 2.5, sv: 2.9, cap: 560, sizeCode: "06X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 5000, partNo: "2R5AR5K561M06X8C" },
+      { series: "AR5K", wv: 2.5, sv: 2.9, cap: 820, sizeCode: "06X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 5000, partNo: "2R5AR5K821M06X8C" },
+      { series: "AR5K", wv: 2.5, sv: 2.9, cap: 820, sizeCode: "08X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 6100, partNo: "2R5AR5K821M08X8C" },
+      { series: "AR5K", wv: 2.5, sv: 2.9, cap: 1000, sizeCode: "08X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 6100, partNo: "2R5AR5K102M08X8C" },
+      { series: "AR5K", wv: 3, sv: 3.4, cap: 820, sizeCode: "06X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 5000, partNo: "3R0AR5K821M06X8C" },
+      { series: "AR5K", wv: 4, sv: 4.6, cap: 560, sizeCode: "06X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 5000, partNo: "4R0AR5K561M06X8C" },
+      { series: "AR5K", wv: 6.3, sv: 7.2, cap: 100, sizeCode: "06X5", leakageCurrent: 126, esr: 35, ratedRippleCurrent: 2100, partNo: "6R3AR5K101M06X5C" },
+      { series: "AR5K", wv: 6.3, sv: 7.2, cap: 470, sizeCode: "06X8", leakageCurrent: 592, esr: 8, ratedRippleCurrent: 4700, partNo: "6R3AR5K471M06X8C" },
+      { series: "AR5K", wv: 6.3, sv: 7.2, cap: 560, sizeCode: "06X8", leakageCurrent: 705, esr: 8, ratedRippleCurrent: 4700, partNo: "6R3AR5K561M06X8C" },
+      { series: "AR5K", wv: 6.3, sv: 7.2, cap: 560, sizeCode: "08X8", leakageCurrent: 705, esr: 8, ratedRippleCurrent: 5700, partNo: "6R3AR5K561M08X8C" },
+      { series: "AR5K", wv: 6.3, sv: 7.2, cap: 820, sizeCode: "06X8", leakageCurrent: 1033, esr: 8, ratedRippleCurrent: 4700, partNo: "6R3AR5K821M06X8C" },
+      { series: "AR5K", wv: 6.3, sv: 7.2, cap: 820, sizeCode: "08X8", leakageCurrent: 1033, esr: 8, ratedRippleCurrent: 5700, partNo: "6R3AR5K821M08X8C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 100, sizeCode: "06X5", leakageCurrent: 320, esr: 24, ratedRippleCurrent: 2490, partNo: "160AR5K101M06X5C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 100, sizeCode: "06X8", leakageCurrent: 320, esr: 25, ratedRippleCurrent: 2820, partNo: "160AR5K101M06X8C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 270, sizeCode: "06X8", leakageCurrent: 864, esr: 10, ratedRippleCurrent: 5000, partNo: "160AR5K271M06X8C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 270, sizeCode: "08X8", leakageCurrent: 864, esr: 10, ratedRippleCurrent: 5000, partNo: "160AR5K271M08X8C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 270, sizeCode: "08A2", leakageCurrent: 864, esr: 10, ratedRippleCurrent: 5230, partNo: "160AR5K271M08A2C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 470, sizeCode: "08X8", leakageCurrent: 1505, esr: 10, ratedRippleCurrent: 5000, partNo: "160AR5K471M08X8C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 470, sizeCode: "08A2", leakageCurrent: 1505, esr: 10, ratedRippleCurrent: 5230, partNo: "160AR5K471M08A2C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 470, sizeCode: "10A2", leakageCurrent: 1505, esr: 10, ratedRippleCurrent: 6100, partNo: "160AR5K471M10A2C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 680, sizeCode: "08A2", leakageCurrent: 2176, esr: 10, ratedRippleCurrent: 5230, partNo: "160AR5K681M08A2C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 820, sizeCode: "08A2", leakageCurrent: 2624, esr: 12, ratedRippleCurrent: 4950, partNo: "160AR5K821M08A2C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 1000, sizeCode: "10A2", leakageCurrent: 3200, esr: 12, ratedRippleCurrent: 5400, partNo: "160AR5K102M10A2C" },
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 1200, sizeCode: "10A2", leakageCurrent: 3840, esr: 12, ratedRippleCurrent: 5400, partNo: "160AR5K122M10A2C" }
+    ];
+
+    const els = {
+      modeButtons: Array.prototype.slice.call(document.querySelectorAll(".mode-button")),
+      series: document.querySelector("#seriesSelect"),
+      cap: document.querySelector("#capSelect"),
+      wv: document.querySelector("#wvSelect"),
+      size: document.querySelector("#sizeSelect"),
+      keyword: document.querySelector("#keywordInput"),
+      warning: document.querySelector("#runtimeWarning"),
+      body: document.querySelector("#resultBody"),
+      seriesCount: document.querySelector("#seriesCount"),
+      matchCount: document.querySelector("#matchCount"),
+      minEsr: document.querySelector("#minEsr"),
+      maxRipple: document.querySelector("#maxRipple"),
+      activeFilter: document.querySelector("#activeFilter")
+    };
+
+    const formatNumber = value => Number(value).toLocaleString("en-US");
+    let searchMode = "dropdown";
+    const uniqueSorted = (items, key) => {
+      const seen = {};
+      const values = [];
+      items.forEach(item => {
+        const value = item[key];
+        const id = String(value);
+        if (!seen[id]) {
+          seen[id] = true;
+          values.push(value);
+        }
+      });
+      return values.sort((a, b) => typeof a === "number" ? a - b : String(a).localeCompare(String(b)));
+    };
+
+    function option(label, value = label) {
+      const node = document.createElement("option");
+      node.value = value;
+      node.textContent = label;
+      return node;
+    }
+
+    function fillSelect(select, values, allLabel, formatter = value => value) {
+      const current = select.value;
+      select.innerHTML = "";
+      select.appendChild(option(allLabel, ""));
+      values.forEach(value => select.appendChild(option(formatter(value), value)));
+      if (values.map(String).indexOf(current) !== -1) {
+        select.value = current;
+      } else {
+        select.value = "";
+      }
+    }
+
+    function searchableText(item) {
+      return [
+        item.series,
+        item.wv,
+        item.sv,
+        item.cap,
+        item.sizeCode,
+        item.leakageCurrent,
+        item.esr,
+        item.ratedRippleCurrent,
+        item.partNo
+      ].join(" ").toUpperCase();
+    }
+
+    function currentSeriesRows() {
+      if (!els.series.value) {
+        return capacitorData;
+      }
+      return capacitorData.filter(item => item.series === els.series.value);
+    }
+
+    function rowsForAvailableOptions(ignoreKey = "") {
+      const baseRows = ignoreKey === "series" ? capacitorData : currentSeriesRows();
+      return baseRows.filter(item => {
+        return (ignoreKey === "series" || !els.series.value || item.series === els.series.value)
+          && (ignoreKey === "cap" || !els.cap.value || item.cap === Number(els.cap.value))
+          && (ignoreKey === "wv" || !els.wv.value || item.wv === Number(els.wv.value))
+          && (ignoreKey === "sizeCode" || !els.size.value || item.sizeCode === els.size.value);
+      });
+    }
+
+    function refreshLinkedFilters() {
+      fillSelect(els.series, uniqueSorted(rowsForAvailableOptions("series"), "series"), "全部系列");
+      fillSelect(els.cap, uniqueSorted(rowsForAvailableOptions("cap"), "cap"), "全部電容量", value => `${formatNumber(value)} uF`);
+      fillSelect(els.wv, uniqueSorted(rowsForAvailableOptions("wv"), "wv"), "全部電壓", value => `${value} V`);
+      fillSelect(els.size, uniqueSorted(rowsForAvailableOptions("sizeCode"), "sizeCode"), "全部尺寸");
+      render();
+    }
+
+    function getFilteredRows() {
+      if (searchMode === "keyword") {
+        const terms = els.keyword.value.trim().toUpperCase().split(/\s+/).filter(Boolean);
+        return capacitorData.filter(item => {
+          const text = searchableText(item);
+          return !terms.length || terms.every(term => text.indexOf(term) !== -1);
+        });
+      }
+
+      return currentSeriesRows().filter(item => {
+        return (!els.series.value || item.series === els.series.value)
+          && (!els.cap.value || item.cap === Number(els.cap.value))
+          && (!els.wv.value || item.wv === Number(els.wv.value))
+          && (!els.size.value || item.sizeCode === els.size.value);
+      });
+    }
+
+    function render() {
+      const seriesRows = searchMode === "keyword" ? capacitorData : currentSeriesRows();
+      const rows = getFilteredRows();
+      const esrValues = rows.map(row => row.esr);
+      const rippleValues = rows.map(row => row.ratedRippleCurrent);
+      els.seriesCount.textContent = seriesRows.length;
+      els.matchCount.textContent = rows.length;
+      els.minEsr.textContent = rows.length ? `${Math.min.apply(null, esrValues)} mOhm` : "-";
+      els.maxRipple.textContent = rows.length ? `${formatNumber(Math.max.apply(null, rippleValues))} mArms` : "-";
+
+      if (searchMode === "keyword") {
+        const terms = els.keyword.value.trim().split(/\s+/).filter(Boolean);
+        els.activeFilter.textContent = terms.length ? `關鍵字 / ${terms.join(" / ")}` : "關鍵字 / 全部資料";
+      } else {
+        const filters = [
+          els.series.value,
+          els.cap.value && `${formatNumber(Number(els.cap.value))} uF`,
+          els.wv.value && `${els.wv.value} V`,
+          els.size.value
+        ].filter(Boolean);
+        els.activeFilter.textContent = filters.length ? filters.join(" / ") : "全部資料";
+      }
+
+      if (!rows.length) {
+        els.body.innerHTML = `<tr><td class="empty" colspan="9">找不到符合條件的料號，請調整篩選條件。</td></tr>`;
+        return;
+      }
+
+      els.body.innerHTML = rows.map(row => `
+        <tr>
+          <td><span class="pill">${row.series}</span></td>
+          <td>${row.wv}</td>
+          <td>${row.sv}</td>
+          <td>${formatNumber(row.cap)}</td>
+          <td>${row.sizeCode}</td>
+          <td>${formatNumber(row.leakageCurrent)}</td>
+          <td>${row.esr}</td>
+          <td>${formatNumber(row.ratedRippleCurrent)}</td>
+          <td class="part">${row.partNo}</td>
+        </tr>
+      `).join("");
+    }
+
+    function init() {
+      if (els.warning) {
+        els.warning.style.display = "none";
+      }
+      fillSelect(els.series, uniqueSorted(capacitorData, "series"), "全部系列");
+      refreshLinkedFilters();
+
+      function syncSearchMode() {
+        const keywordMode = searchMode === "keyword";
+        els.modeButtons.forEach(button => {
+          button.setAttribute("aria-pressed", String(button.dataset.mode === searchMode));
+        });
+        els.series.disabled = keywordMode;
+        els.cap.disabled = keywordMode;
+        els.wv.disabled = keywordMode;
+        els.size.disabled = keywordMode;
+        els.keyword.disabled = !keywordMode;
+        if (keywordMode) {
+          els.cap.value = "";
+          els.wv.value = "";
+          els.size.value = "";
+          render();
+        } else {
+          els.keyword.value = "";
+          refreshLinkedFilters();
+        }
+      }
+
+      els.modeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          searchMode = button.dataset.mode;
+          syncSearchMode();
+        });
+      });
+      els.series.addEventListener("change", () => {
+        els.cap.value = "";
+        els.wv.value = "";
+        els.size.value = "";
+        refreshLinkedFilters();
+      });
+      [els.cap, els.wv, els.size].forEach(select => select.addEventListener("change", refreshLinkedFilters));
+      els.keyword.addEventListener("input", render);
+      syncSearchMode();
+    }
+
+    init();
+  </script>
+</body>
+</html>
