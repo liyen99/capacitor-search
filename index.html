@@ -450,6 +450,13 @@
 
   <script>
     const capacitorData = [
+          // 【重要】接下來我們將分批將新電容系列的數據加入到這個陣列中
+    // 鈺邦 AP-CON 13系列 官方規格書地毯式無遺漏數據庫 (橫跨固態與混血系列)
+    const capacitorData = [
+      // ==========================================
+      // 1. 原始載入系列 (AREA, AR5K, AVQE)
+      // ==========================================
+      // === AREA ===
       { series: "AREA", wv: 2.5, sv: 2.9, cap: 560, sizeCode: "06X5", leakageCurrent: 280, esr: 10, ratedRippleCurrent: 3900, partNo: "2R5AREA561M06X5" },
       { series: "AREA", wv: 2.5, sv: 2.9, cap: 820, sizeCode: "08X8", leakageCurrent: 410, esr: 10, ratedRippleCurrent: 5230, partNo: "2R5AREA821M08X8" },
       { series: "AREA", wv: 6.3, sv: 7.2, cap: 220, sizeCode: "06X5", leakageCurrent: 277, esr: 15, ratedRippleCurrent: 3160, partNo: "6R3AREA221M06X5" },
@@ -460,6 +467,7 @@
       { series: "AREA", wv: 16, sv: 18.4, cap: 100, sizeCode: "06X8", leakageCurrent: 320, esr: 25, ratedRippleCurrent: 2820, partNo: "160AREA101M06X8" },
       { series: "AREA", wv: 16, sv: 18.4, cap: 1000, sizeCode: "10A2", leakageCurrent: 3200, esr: 12, ratedRippleCurrent: 5400, partNo: "160AREA102M10A2" },
 
+      // === AR5K ===
       { series: "AR5K", wv: 2.5, sv: 2.9, cap: 390, sizeCode: "05X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 4180, partNo: "2R5AR5K391M05X8C" },
       { series: "AR5K", wv: 2.5, sv: 2.9, cap: 560, sizeCode: "05X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 4180, partNo: "2R5AR5K561M05X8C" },
       { series: "AR5K", wv: 2.5, sv: 2.9, cap: 560, sizeCode: "06X8", leakageCurrent: 500, esr: 7, ratedRippleCurrent: 5000, partNo: "2R5AR5K561M06X8C" },
@@ -485,7 +493,278 @@
       { series: "AR5K", wv: 16, sv: 18.4, cap: 680, sizeCode: "08A2", leakageCurrent: 2176, esr: 10, ratedRippleCurrent: 5230, partNo: "160AR5K681M08A2C" },
       { series: "AR5K", wv: 16, sv: 18.4, cap: 820, sizeCode: "08A2", leakageCurrent: 2624, esr: 12, ratedRippleCurrent: 4950, partNo: "160AR5K821M08A2C" },
       { series: "AR5K", wv: 16, sv: 18.4, cap: 1000, sizeCode: "10A2", leakageCurrent: 3200, esr: 12, ratedRippleCurrent: 5400, partNo: "160AR5K102M10A2C" },
-      { series: "AR5K", wv: 16, sv: 18.4, cap: 1200, sizeCode: "10A2", leakageCurrent: 3840, esr: 12, ratedRippleCurrent: 5400, partNo: "160AR5K122M10A2C" }
+      { series: "AR5K", wv: 16, sv: 18.4, cap: 1200, sizeCode: "10A2", leakageCurrent: 3840, esr: 12, ratedRippleCurrent: 5400, partNo: "160AR5K122M10A2C" },
+
+      // === AVQE ===
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 56, sizeCode: "0606", leakageCurrent: 14, esr: 50, ratedRippleCurrent: 900, partNo: "250AVQE560M0606" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 100, sizeCode: "0608", leakageCurrent: 25, esr: 30, ratedRippleCurrent: 1400, partNo: "250AVQE101M0608" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 150, sizeCode: "0810", leakageCurrent: 37.5, esr: 22, ratedRippleCurrent: 1800, partNo: "250AVQE151M0810" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 220, sizeCode: "0810", leakageCurrent: 55, esr: 22, ratedRippleCurrent: 1800, partNo: "250AVQE221M0810" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 270, sizeCode: "1010", leakageCurrent: 67.5, esr: 20, ratedRippleCurrent: 2200, partNo: "250AVQE271M1010" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 330, sizeCode: "1010", leakageCurrent: 82.5, esr: 20, ratedRippleCurrent: 2200, partNo: "250AVQE331M1010" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 470, sizeCode: "1012", leakageCurrent: 117.5, esr: 16, ratedRippleCurrent: 2500, partNo: "250AVQE471M1012" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 560, sizeCode: "1010", leakageCurrent: 140, esr: 20, ratedRippleCurrent: 2200, partNo: "250AVQE561M1010" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 560, sizeCode: "1016", leakageCurrent: 140, esr: 15, ratedRippleCurrent: 2900, partNo: "250AVQE561M1016" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 680, sizeCode: "1012", leakageCurrent: 170, esr: 16, ratedRippleCurrent: 2500, partNo: "250AVQE681M1012" },
+      { series: "AVQE", wv: 25, sv: 31.3, cap: 1000, sizeCode: "1016", leakageCurrent: 250, esr: 11, ratedRippleCurrent: 4000, partNo: "250AVQE102M1016" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 47, sizeCode: "0606", leakageCurrent: 16.5, esr: 60, ratedRippleCurrent: 900, partNo: "350AVQE470M0606" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 68, sizeCode: "0608", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 1400, partNo: "350AVQE680M0608" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 100, sizeCode: "0810", leakageCurrent: 35, esr: 22, ratedRippleCurrent: 1800, partNo: "350AVQE101M0810" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 150, sizeCode: "0810", leakageCurrent: 52.5, esr: 22, ratedRippleCurrent: 1800, partNo: "350AVQE151M0810" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 150, sizeCode: "1010", leakageCurrent: 52.5, esr: 20, ratedRippleCurrent: 2200, partNo: "350AVQE151M1010" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 220, sizeCode: "1010", leakageCurrent: 77, esr: 20, ratedRippleCurrent: 2200, partNo: "350AVQE221M1010" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 270, sizeCode: "1010", leakageCurrent: 94.5, esr: 20, ratedRippleCurrent: 2200, partNo: "350AVQE271M1010" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 330, sizeCode: "1012", leakageCurrent: 115.5, esr: 16, ratedRippleCurrent: 2500, partNo: "350AVQE331M1012" },
+      { series: "AVQE", wv: 35, sv: 43.8, cap: 470, sizeCode: "1016", leakageCurrent: 164.5, esr: 15, ratedRippleCurrent: 2900, partNo: "350AVQE471M1016" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 22, sizeCode: "0606", leakageCurrent: 11, esr: 80, ratedRippleCurrent: 750, partNo: "500AVQE220M0606" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 33, sizeCode: "0608", leakageCurrent: 16.5, esr: 40, ratedRippleCurrent: 1100, partNo: "500AVQE330M0608" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 47, sizeCode: "0810", leakageCurrent: 23.5, esr: 24, ratedRippleCurrent: 1500, partNo: "500AVQE470M0810" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 68, sizeCode: "0810", leakageCurrent: 34, esr: 24, ratedRippleCurrent: 1500, partNo: "500AVQE680M0810" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 100, sizeCode: "1010", leakageCurrent: 50, esr: 22, ratedRippleCurrent: 1800, partNo: "500AVQE101M1010" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 120, sizeCode: "1010", leakageCurrent: 60, esr: 22, ratedRippleCurrent: 1800, partNo: "500AVQE121M1010" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 150, sizeCode: "1012", leakageCurrent: 75, esr: 18, ratedRippleCurrent: 2000, partNo: "500AVQE151M1012" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 180, sizeCode: "1012", leakageCurrent: 90, esr: 16, ratedRippleCurrent: 2500, partNo: "500AVQE181M1012" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 220, sizeCode: "1016", leakageCurrent: 110, esr: 13, ratedRippleCurrent: 3800, partNo: "500AVQE221M1016" },
+      { series: "AVQE", wv: 50, sv: 62.5, cap: 270, sizeCode: "1016", leakageCurrent: 135, esr: 13, ratedRippleCurrent: 3800, partNo: "500AVQE271M1016" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 10, sizeCode: "0606", leakageCurrent: 6.3, esr: 120, ratedRippleCurrent: 700, partNo: "630AVQE100M0606" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 22, sizeCode: "0608", leakageCurrent: 13.9, esr: 80, ratedRippleCurrent: 900, partNo: "630AVQE220M0608" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 33, sizeCode: "0810", leakageCurrent: 20.8, esr: 24, ratedRippleCurrent: 1500, partNo: "630AVQE330M0810" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 47, sizeCode: "0810", leakageCurrent: 29.6, esr: 24, ratedRippleCurrent: 1500, partNo: "630AVQE470M0810" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 56, sizeCode: "1010", leakageCurrent: 35.3, esr: 22, ratedRippleCurrent: 1800, partNo: "630AVQE560M1010" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 68, sizeCode: "1010", leakageCurrent: 42.8, esr: 22, ratedRippleCurrent: 1800, partNo: "630AVQE680M1010" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 82, sizeCode: "1010", leakageCurrent: 51.7, esr: 22, ratedRippleCurrent: 1800, partNo: "630AVQE820M1010" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 100, sizeCode: "1012", leakageCurrent: 63, esr: 18, ratedRippleCurrent: 2200, partNo: "630AVQE101M1012" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 120, sizeCode: "1012", leakageCurrent: 75.6, esr: 18, ratedRippleCurrent: 2200, partNo: "630AVQE121M1012" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 150, sizeCode: "1016", leakageCurrent: 94.5, esr: 16, ratedRippleCurrent: 2500, partNo: "630AVQE151M1016" },
+      { series: "AVQE", wv: 63, sv: 78.8, cap: 180, sizeCode: "1016", leakageCurrent: 113.4, esr: 16, ratedRippleCurrent: 2500, partNo: "630AVQE181M1016" },
+
+      // ==========================================
+      // 2. 混血型貼片系列 (AVQC, AVME, AVMC, AVMA)
+      // ==========================================
+      // === AVQC (完全版 39 筆) ===
+      { series: "AVQC", wv: 16, sv: 20, cap: 820, sizeCode: "1010", leakageCurrent: 131.2, esr: 18, ratedRippleCurrent: 2800, partNo: "160AVQC821M1010" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 47, sizeCode: "0606", leakageCurrent: 11.8, esr: 50, ratedRippleCurrent: 900, partNo: "250AVQC470M0606" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 56, sizeCode: "0606", leakageCurrent: 14, esr: 50, ratedRippleCurrent: 900, partNo: "250AVQC560M0606" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 68, sizeCode: "0606", leakageCurrent: 17, esr: 50, ratedRippleCurrent: 1100, partNo: "250AVQC680M0606" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 100, sizeCode: "0606", leakageCurrent: 25, esr: 50, ratedRippleCurrent: 1300, partNo: "250AVQC101M0606" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 100, sizeCode: "0608", leakageCurrent: 25, esr: 30, ratedRippleCurrent: 1400, partNo: "250AVQC101M0608" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 150, sizeCode: "0608", leakageCurrent: 37.5, esr: 30, ratedRippleCurrent: 1800, partNo: "250AVQC151M0608" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 220, sizeCode: "0810", leakageCurrent: 55, esr: 27, ratedRippleCurrent: 2900, partNo: "250AVQC221M0810" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 270, sizeCode: "0810", leakageCurrent: 67.5, esr: 27, ratedRippleCurrent: 2900, partNo: "250AVQC271M0810" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 330, sizeCode: "1010", leakageCurrent: 82.5, esr: 20, ratedRippleCurrent: 3500, partNo: "250AVQC331M1010" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 470, sizeCode: "1010", leakageCurrent: 117.5, esr: 20, ratedRippleCurrent: 3500, partNo: "250AVQC471M1010" }, //
+      { series: "AVQC", wv: 25, sv: 31.3, cap: 470, sizeCode: "1012", leakageCurrent: 117.5, esr: 14, ratedRippleCurrent: 3500, partNo: "250AVQC471M1012" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 27, sizeCode: "0606", leakageCurrent: 9.5, esr: 60, ratedRippleCurrent: 900, partNo: "350AVQC270M0606" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 47, sizeCode: "0606", leakageCurrent: 16.5, esr: 60, ratedRippleCurrent: 900, partNo: "350AVQC470M0606" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 47, sizeCode: "0608", leakageCurrent: 16.5, esr: 35, ratedRippleCurrent: 1400, partNo: "350AVQC470M0608" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 68, sizeCode: "0608", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 1400, partNo: "350AVQC680M0608" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 100, sizeCode: "0608", leakageCurrent: 35, esr: 35, ratedRippleCurrent: 1700, partNo: "350AVQC101M0608" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 100, sizeCode: "0810", leakageCurrent: 35, esr: 27, ratedRippleCurrent: 1900, partNo: "350AVQC101M0810" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 150, sizeCode: "0810", leakageCurrent: 52.5, esr: 27, ratedRippleCurrent: 2900, partNo: "350AVQC151M0810" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 180, sizeCode: "0810", leakageCurrent: 63, esr: 27, ratedRippleCurrent: 2900, partNo: "350AVQC181M0810" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 220, sizeCode: "1010", leakageCurrent: 77, esr: 20, ratedRippleCurrent: 2800, partNo: "350AVQC221M1010" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 270, sizeCode: "1010", leakageCurrent: 94.5, esr: 20, ratedRippleCurrent: 3500, partNo: "350AVQC271M1010" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 330, sizeCode: "1010", leakageCurrent: 115.5, esr: 20, ratedRippleCurrent: 3500, partNo: "350AVQC331M1010" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 330, sizeCode: "1012", leakageCurrent: 115.5, esr: 14, ratedRippleCurrent: 3500, partNo: "350AVQC331M1012" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 470, sizeCode: "1012", leakageCurrent: 164.5, esr: 14, ratedRippleCurrent: 3500, partNo: "350AVQC471M1012" }, //
+      { series: "AVQC", wv: 35, sv: 43.8, cap: 470, sizeCode: "1016", leakageCurrent: 164.5, esr: 11, ratedRippleCurrent: 4000, partNo: "350AVQC471M1016" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 22, sizeCode: "0606", leakageCurrent: 11, esr: 80, ratedRippleCurrent: 750, partNo: "500AVQC220M0606" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 33, sizeCode: "0608", leakageCurrent: 16.5, esr: 40, ratedRippleCurrent: 1100, partNo: "500AVQC330M0608" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 47, sizeCode: "0810", leakageCurrent: 23.5, esr: 30, ratedRippleCurrent: 1250, partNo: "500AVQC470M0810" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 68, sizeCode: "0810", leakageCurrent: 34, esr: 30, ratedRippleCurrent: 2700, partNo: "500AVQC680M0810" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 100, sizeCode: "1010", leakageCurrent: 50, esr: 23, ratedRippleCurrent: 2900, partNo: "500AVQC101M1010" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 120, sizeCode: "1010", leakageCurrent: 60, esr: 25, ratedRippleCurrent: 2900, partNo: "500AVQC121M1010" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 150, sizeCode: "1012", leakageCurrent: 75, esr: 17, ratedRippleCurrent: 2000, partNo: "500AVQC151M1012" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 180, sizeCode: "1012", leakageCurrent: 90, esr: 17, ratedRippleCurrent: 3200, partNo: "500AVQC181M1012" }, //
+      { series: "AVQC", wv: 50, sv: 62.5, cap: 220, sizeCode: "1016", leakageCurrent: 110, esr: 13, ratedRippleCurrent: 3700, partNo: "500AVQC221M1016" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 10, sizeCode: "0606", leakageCurrent: 6.3, esr: 120, ratedRippleCurrent: 700, partNo: "630AVQC100M0606" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 22, sizeCode: "0608", leakageCurrent: 13.9, esr: 80, ratedRippleCurrent: 900, partNo: "630AVQC220M0608" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 33, sizeCode: "0810", leakageCurrent: 20.8, esr: 40, ratedRippleCurrent: 1100, partNo: "630AVQC330M0810" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 47, sizeCode: "0810", leakageCurrent: 29.6, esr: 32, ratedRippleCurrent: 2400, partNo: "630AVQC470M0810" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 56, sizeCode: "1010", leakageCurrent: 35.3, esr: 30, ratedRippleCurrent: 2800, partNo: "630AVQC560M1010" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 68, sizeCode: "1010", leakageCurrent: 42.8, esr: 30, ratedRippleCurrent: 2800, partNo: "630AVQC680M1010" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 82, sizeCode: "1010", leakageCurrent: 51.7, esr: 30, ratedRippleCurrent: 2800, partNo: "630AVQC820M1010" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 100, sizeCode: "1010", leakageCurrent: 63, esr: 30, ratedRippleCurrent: 2800, partNo: "630AVQC101M1010" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 120, sizeCode: "1012", leakageCurrent: 75.6, esr: 19, ratedRippleCurrent: 3000, partNo: "630AVQC121M1012" }, //
+      { series: "AVQC", wv: 63, sv: 78.8, cap: 150, sizeCode: "1016", leakageCurrent: 94.5, esr: 15, ratedRippleCurrent: 3500, partNo: "630AVQC151M1016" }, //
+      { series: "AVQC", wv: 80, sv: 100, cap: 22, sizeCode: "0810", leakageCurrent: 17.6, esr: 45, ratedRippleCurrent: 1050, partNo: "800AVQC220M0810" }, //
+      { series: "AVQC", wv: 80, sv: 100, cap: 47, sizeCode: "1010", leakageCurrent: 37.6, esr: 33, ratedRippleCurrent: 1360, partNo: "800AVQC470M1010" }, //
+      { series: "AVQC", wv: 80, sv: 100, cap: 56, sizeCode: "1010", leakageCurrent: 44.8, esr: 33, ratedRippleCurrent: 1360, partNo: "800AVQC560M1010" }, //
+
+      // === AVME (完整版 31 筆) ===
+      { series: "AVME", wv: 25, sv: 31.3, cap: 56, sizeCode: "0606", leakageCurrent: 14, esr: 50, ratedRippleCurrent: 900, partNo: "250AVME560M0606" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 100, sizeCode: "0608", leakageCurrent: 25, esr: 30, ratedRippleCurrent: 1400, partNo: "250AVME101M0608" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 150, sizeCode: "0609", leakageCurrent: 37.5, esr: 27, ratedRippleCurrent: 2200, partNo: "250AVME151M0609" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 150, sizeCode: "0810", leakageCurrent: 37.5, esr: 22, ratedRippleCurrent: 1800, partNo: "250AVME151M0810" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 220, sizeCode: "0810", leakageCurrent: 55, esr: 22, ratedRippleCurrent: 1800, partNo: "250AVME221M0810" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 270, sizeCode: "1010", leakageCurrent: 67.5, esr: 20, ratedRippleCurrent: 2200, partNo: "250AVME271M1010" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 330, sizeCode: "1010", leakageCurrent: 82.5, esr: 20, ratedRippleCurrent: 2200, partNo: "250AVME331M1010" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 470, sizeCode: "1012", leakageCurrent: 117.5, esr: 16, ratedRippleCurrent: 2500, partNo: "250AVME471M1012" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 560, sizeCode: "1010", leakageCurrent: 140, esr: 20, ratedRippleCurrent: 2200, partNo: "250AVME561M1010" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 560, sizeCode: "1016", leakageCurrent: 140, esr: 15, ratedRippleCurrent: 2900, partNo: "250AVME561M1016" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 680, sizeCode: "1012", leakageCurrent: 170, esr: 16, ratedRippleCurrent: 2500, partNo: "250AVME681M1012" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 820, sizeCode: "1016", leakageCurrent: 205, esr: 11, ratedRippleCurrent: 4000, partNo: "250AVME821M1016" }, //
+      { series: "AVME", wv: 25, sv: 31.3, cap: 1000, sizeCode: "1016", leakageCurrent: 250, esr: 11, ratedRippleCurrent: 4000, partNo: "250AVME102M1016" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 47, sizeCode: "0606", leakageCurrent: 16.5, esr: 60, ratedRippleCurrent: 900, partNo: "350AVME470M0606" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 68, sizeCode: "0608", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 2000, partNo: "350AVME680M0608" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 100, sizeCode: "0609", leakageCurrent: 35, esr: 30, ratedRippleCurrent: 2200, partNo: "350AVME101M0609" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 100, sizeCode: "0810", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 1400, partNo: "350AVME101M0810" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 150, sizeCode: "0810", leakageCurrent: 52.5, esr: 22, ratedRippleCurrent: 1800, partNo: "350AVME151M0810" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 150, sizeCode: "1010", leakageCurrent: 52.5, esr: 22, ratedRippleCurrent: 1800, partNo: "350AVME151M1010" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 220, sizeCode: "1010", leakageCurrent: 77, esr: 20, ratedRippleCurrent: 2200, partNo: "350AVME221M1010" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 270, sizeCode: "1010", leakageCurrent: 94.5, esr: 20, ratedRippleCurrent: 2200, partNo: "350AVME271M1010" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 330, sizeCode: "1012", leakageCurrent: 115.5, esr: 16, ratedRippleCurrent: 2500, partNo: "350AVME331M1012" }, //
+      { series: "AVME", wv: 35, sv: 40.3, cap: 470, sizeCode: "1016", leakageCurrent: 164.5, esr: 15, ratedRippleCurrent: 2900, partNo: "350AVME471M1016" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 22, sizeCode: "0606", leakageCurrent: 11, esr: 80, ratedRippleCurrent: 750, partNo: "500AVME220M0606" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 33, sizeCode: "0608", leakageCurrent: 16.5, esr: 40, ratedRippleCurrent: 1100, partNo: "500AVME330M0608" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 47, sizeCode: "0810", leakageCurrent: 23.5, esr: 24, ratedRippleCurrent: 1500, partNo: "500AVME470M0810" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 68, sizeCode: "0810", leakageCurrent: 34, esr: 24, ratedRippleCurrent: 1500, partNo: "500AVME680M0810" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 100, sizeCode: "1010", leakageCurrent: 50, esr: 22, ratedRippleCurrent: 1800, partNo: "500AVME101M1010" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 120, sizeCode: "1010", leakageCurrent: 60, esr: 22, ratedRippleCurrent: 1800, partNo: "500AVME121M1010" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 150, sizeCode: "1012", leakageCurrent: 75, esr: 18, ratedRippleCurrent: 2200, partNo: "500AVME151M1012" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 180, sizeCode: "1012", leakageCurrent: 90, esr: 16, ratedRippleCurrent: 2500, partNo: "500AVME181M1012" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 220, sizeCode: "1016", leakageCurrent: 110, esr: 16, ratedRippleCurrent: 2500, partNo: "500AVME221M1016" }, //
+      { series: "AVME", wv: 50, sv: 57.5, cap: 270, sizeCode: "1016", leakageCurrent: 135, esr: 13, ratedRippleCurrent: 3800, partNo: "500AVME271M1016" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 10, sizeCode: "0606", leakageCurrent: 6.3, esr: 120, ratedRippleCurrent: 700, partNo: "630AVME100M0606" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 22, sizeCode: "0608", leakageCurrent: 13.9, esr: 80, ratedRippleCurrent: 900, partNo: "630AVME220M0608" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 33, sizeCode: "0810", leakageCurrent: 20.8, esr: 24, ratedRippleCurrent: 1500, partNo: "630AVME330M0810" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 47, sizeCode: "0810", leakageCurrent: 29.6, esr: 24, ratedRippleCurrent: 1500, partNo: "630AVME470M0810" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 56, sizeCode: "1010", leakageCurrent: 35.3, esr: 22, ratedRippleCurrent: 1800, partNo: "630AVME560M1010" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 68, sizeCode: "1010", leakageCurrent: 42.8, esr: 22, ratedRippleCurrent: 1800, partNo: "630AVME680M1010" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 82, sizeCode: "1010", leakageCurrent: 51.7, esr: 22, ratedRippleCurrent: 2800, partNo: "630AVME820M1010" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 82, sizeCode: "1012", leakageCurrent: 51.7, esr: 17, ratedRippleCurrent: 3000, partNo: "630AVME820M1010E17H" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 100, sizeCode: "1010", leakageCurrent: 63, esr: 17, ratedRippleCurrent: 3000, partNo: "630AVME101M1010" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 100, sizeCode: "1012", leakageCurrent: 63, esr: 18, ratedRippleCurrent: 2200, partNo: "630AVME101M1012" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 120, sizeCode: "1012", leakageCurrent: 75.6, esr: 18, ratedRippleCurrent: 2200, partNo: "630AVME121M1012" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 120, sizeCode: "1012", leakageCurrent: 75.6, esr: 12, ratedRippleCurrent: 3400, partNo: "630AVME121M1012E12H" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 150, sizeCode: "1016", leakageCurrent: 94.5, esr: 16, ratedRippleCurrent: 2500, partNo: "630AVME151M1016" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 180, sizeCode: "1016", leakageCurrent: 113.4, esr: 16, ratedRippleCurrent: 2500, partNo: "630AVME181M1016" }, //
+      { series: "AVME", wv: 63, sv: 72.5, cap: 180, sizeCode: "1016", leakageCurrent: 113.4, esr: 10, ratedRippleCurrent: 3800, partNo: "630AVME181M1016E10H" }, //
+      { series: "AVME", wv: 80, sv: 92, cap: 22, sizeCode: "0810", leakageCurrent: 17.6, esr: 45, ratedRippleCurrent: 1200, partNo: "800AVME220M0810" }, //
+      { series: "AVME", wv: 80, sv: 92, cap: 47, sizeCode: "1010", leakageCurrent: 37.6, esr: 36, ratedRippleCurrent: 1700, partNo: "800AVME470M1010" }, //
+
+      // === AVMC (完整版 39 筆) ===
+      { series: "AVMC", wv: 16, sv: 18.4, cap: 270, sizeCode: "0810", leakageCurrent: 43.2, esr: 22, ratedRippleCurrent: 1700, partNo: "160AVMC271M0810" }, //
+      { series: "AVMC", wv: 16, sv: 18.4, cap: 470, sizeCode: "0810", leakageCurrent: 75.2, esr: 20, ratedRippleCurrent: 2000, partNo: "160AVMC471M0810" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 100, sizeCode: "0606", leakageCurrent: 25, esr: 50, ratedRippleCurrent: 1300, partNo: "250AVMC101M0606" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 100, sizeCode: "0608", leakageCurrent: 25, esr: 30, ratedRippleCurrent: 1400, partNo: "250AVMC101M0608" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 150, sizeCode: "0608", leakageCurrent: 37.5, esr: 30, ratedRippleCurrent: 1800, partNo: "250AVMC151M0608" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 220, sizeCode: "0810", leakageCurrent: 55, esr: 27, ratedRippleCurrent: 1600, partNo: "250AVMC221M0810" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 270, sizeCode: "0810", leakageCurrent: 67.5, esr: 27, ratedRippleCurrent: 1600, partNo: "250AVMC271M0810" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 330, sizeCode: "1010", leakageCurrent: 82.5, esr: 20, ratedRippleCurrent: 2000, partNo: "250AVMC331M1010" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 470, sizeCode: "1010", leakageCurrent: 117.5, esr: 20, ratedRippleCurrent: 2800, partNo: "250AVMC471M1010" }, //
+      { series: "AVMC", wv: 25, sv: 28.8, cap: 560, sizeCode: "1010", leakageCurrent: 140, esr: 20, ratedRippleCurrent: 2800, partNo: "250AVMC561M1010" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 47, sizeCode: "0606", leakageCurrent: 16.5, esr: 60, ratedRippleCurrent: 900, partNo: "350AVMC470M0606" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 68, sizeCode: "0608", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 1400, partNo: "350AVMC680M0608" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 150, sizeCode: "0810", leakageCurrent: 52.5, esr: 27, ratedRippleCurrent: 1600, partNo: "350AVMC151M0810" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 180, sizeCode: "0810", leakageCurrent: 63, esr: 27, ratedRippleCurrent: 1600, partNo: "350AVMC181M0810" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 220, sizeCode: "0812", leakageCurrent: 77, esr: 19, ratedRippleCurrent: 2000, partNo: "350AVMC221M0812" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 270, sizeCode: "1010", leakageCurrent: 94.5, esr: 20, ratedRippleCurrent: 2000, partNo: "350AVMC271M1010" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 330, sizeCode: "1010", leakageCurrent: 115.5, esr: 20, ratedRippleCurrent: 2000, partNo: "350AVMC331M1010" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 330, sizeCode: "1012", leakageCurrent: 115.5, esr: 17, ratedRippleCurrent: 2300, partNo: "350AVMC331M1012" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 390, sizeCode: "1012", leakageCurrent: 136.5, esr: 17, ratedRippleCurrent: 2800, partNo: "350AVMC391M1012" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 470, sizeCode: "1016", leakageCurrent: 164.5, esr: 11, ratedRippleCurrent: 4000, partNo: "350AVMC471M1016" }, //
+      { series: "AVMC", wv: 35, sv: 40.3, cap: 680, sizeCode: "1016", leakageCurrent: 238, esr: 11, ratedRippleCurrent: 4000, partNo: "350AVMC681M1016" }, //
+      { series: "AVMC", wv: 50, sv: 57.5, cap: 33, sizeCode: "0608", leakageCurrent: 16.5, esr: 40, ratedRippleCurrent: 1100, partNo: "500AVMC330M0608" }, //
+      { series: "AVMC", wv: 50, sv: 57.5, cap: 68, sizeCode: "0810", leakageCurrent: 34, esr: 30, ratedRippleCurrent: 1250, partNo: "500AVMC680M0810" }, //
+      { series: "AVMC", wv: 50, sv: 57.5, cap: 100, sizeCode: "1010", leakageCurrent: 50, esr: 28, ratedRippleCurrent: 1600, partNo: "500AVMC101M1010" }, //
+      { series: "AVMC", wv: 50, sv: 57.5, cap: 120, sizeCode: "1010", leakageCurrent: 60, esr: 28, ratedRippleCurrent: 1600, partNo: "500AVMC121M1010" }, //
+      { series: "AVMC", wv: 50, sv: 57.5, cap: 180, sizeCode: "1012", leakageCurrent: 90, esr: 25, ratedRippleCurrent: 2000, partNo: "500AVMC181M1012" }, //
+      { series: "AVMC", wv: 50, sv: 57.5, cap: 220, sizeCode: "1016", leakageCurrent: 110, esr: 13, ratedRippleCurrent: 4100, partNo: "500AVMC221M1016" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 22, sizeCode: "0608", leakageCurrent: 13.9, esr: 80, ratedRippleCurrent: 900, partNo: "630AVMC220M0608" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 33, sizeCode: "0810", leakageCurrent: 20.8, esr: 40, ratedRippleCurrent: 1100, partNo: "630AVMC330M0810" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 47, sizeCode: "0810", leakageCurrent: 29.6, esr: 32, ratedRippleCurrent: 2400, partNo: "630AVMC470M0810" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 56, sizeCode: "1010", leakageCurrent: 35.3, esr: 30, ratedRippleCurrent: 1400, partNo: "630AVMC560M1010" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 68, sizeCode: "1010", leakageCurrent: 42.8, esr: 30, ratedRippleCurrent: 1400, partNo: "630AVMC680M1010" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 82, sizeCode: "1010", leakageCurrent: 51.7, esr: 30, ratedRippleCurrent: 1400, partNo: "630AVMC820M1010" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 100, sizeCode: "1010", leakageCurrent: 63, esr: 30, ratedRippleCurrent: 2800, partNo: "630AVMC101M1010" }, //
+      { series: "AVMC", wv: 63, sv: 72.5, cap: 180, sizeCode: "1016", leakageCurrent: 113.4, esr: 15, ratedRippleCurrent: 3500, partNo: "630AVMC181M1016" }, //
+      { series: "AVMC", wv: 80, sv: 92, cap: 22, sizeCode: "0810", leakageCurrent: 17.6, esr: 45, ratedRippleCurrent: 1050, partNo: "800AVMC220M0810" }, //
+      { series: "AVMC", wv: 80, sv: 92, cap: 27, sizeCode: "0810", leakageCurrent: 21.6, esr: 45, ratedRippleCurrent: 1050, partNo: "800AVMC270M0810" }, //
+      { series: "AVMC", wv: 80, sv: 92, cap: 33, sizeCode: "1010", leakageCurrent: 26.4, esr: 36, ratedRippleCurrent: 1360, partNo: "800AVMC330M1010" }, //
+      { series: "AVMC", wv: 80, sv: 92, cap: 47, sizeCode: "1010", leakageCurrent: 37.6, esr: 36, ratedRippleCurrent: 1360, partNo: "800AVMC470M1010" }, //
+      { series: "AVMC", wv: 80, sv: 92, cap: 56, sizeCode: "1010", leakageCurrent: 44.8, esr: 36, ratedRippleCurrent: 1360, partNo: "800AVMC560M1010" }, //
+      { series: "AVMC", wv: 80, sv: 92, cap: 68, sizeCode: "1012", leakageCurrent: 54.4, esr: 28, ratedRippleCurrent: 2100, partNo: "800AVMC680M1012" }, //
+
+      // === AVMA (完整版 32 筆) ===
+      { series: "AVMA", wv: 16, sv: 18.4, cap: 470, sizeCode: "0810", leakageCurrent: 75.2, esr: 26, ratedRippleCurrent: 2400, partNo: "160AVMA471M0810" }, //
+      { series: "AVMA", wv: 25, sv: 28.8, cap: 100, sizeCode: "0608", leakageCurrent: 25, esr: 30, ratedRippleCurrent: 2000, partNo: "250AVMA101M0608" }, //
+      { series: "AVMA", wv: 25, sv: 28.8, cap: 220, sizeCode: "0810", leakageCurrent: 55, esr: 27, ratedRippleCurrent: 2300, partNo: "250AVMA221M0810" }, //
+      { series: "AVMA", wv: 25, sv: 28.8, cap: 330, sizeCode: "1010", leakageCurrent: 82.5, esr: 20, ratedRippleCurrent: 2500, partNo: "250AVMA331M1010" }, //
+      { series: "AVMA", wv: 25, sv: 28.8, cap: 390, sizeCode: "1010", leakageCurrent: 97.5, esr: 20, ratedRippleCurrent: 2500, partNo: "250AVMA391M1010" }, //
+      { series: "AVMA", wv: 25, sv: 28.8, cap: 470, sizeCode: "1010", leakageCurrent: 117.5, esr: 20, ratedRippleCurrent: 2500, partNo: "250AVMA471M1010" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 47, sizeCode: "0608", leakageCurrent: 16.5, esr: 35, ratedRippleCurrent: 2000, partNo: "350AVMA470M0608" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 68, sizeCode: "0608", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 2000, partNo: "350AVMA680M0608" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 100, sizeCode: "0810", leakageCurrent: 35, esr: 30, ratedRippleCurrent: 1800, partNo: "350AVMA101M0810" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 150, sizeCode: "0810", leakageCurrent: 52.5, esr: 27, ratedRippleCurrent: 2300, partNo: "350AVMA151M0810" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 220, sizeCode: "1012", leakageCurrent: 77, esr: 17, ratedRippleCurrent: 3000, partNo: "350AVMA221M1012" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 270, sizeCode: "1010", leakageCurrent: 94.5, esr: 20, ratedRippleCurrent: 2500, partNo: "350AVMA271M1010" }, //
+      { series: "AVMA", wv: 35, sv: 40.3, cap: 330, sizeCode: "1010", leakageCurrent: 115.5, esr: 20, ratedRippleCurrent: 2500, partNo: "350AVMA331M1010" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 33, sizeCode: "0608", leakageCurrent: 16.5, esr: 40, ratedRippleCurrent: 1600, partNo: "500AVMA330M0608" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 33, sizeCode: "0810", leakageCurrent: 16.5, esr: 35, ratedRippleCurrent: 1700, partNo: "500AVMA330M0810" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 47, sizeCode: "0810", leakageCurrent: 23.5, esr: 30, ratedRippleCurrent: 1800, partNo: "500AVMA470M0810" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 68, sizeCode: "0810", leakageCurrent: 34, esr: 30, ratedRippleCurrent: 1800, partNo: "500AVMA680M0810" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 100, sizeCode: "1010", leakageCurrent: 50, esr: 28, ratedRippleCurrent: 2000, partNo: "500AVMA101M1010" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 120, sizeCode: "1010", leakageCurrent: 60, esr: 28, ratedRippleCurrent: 2000, partNo: "500AVMA121M1010" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 150, sizeCode: "1012", leakageCurrent: 75, esr: 25, ratedRippleCurrent: 2000, partNo: "500AVMA151M1012" }, //
+      { series: "AVMA", wv: 50, sv: 57.5, cap: 180, sizeCode: "1012", leakageCurrent: 90, esr: 25, ratedRippleCurrent: 2000, partNo: "500AVMA181M1012" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 22, sizeCode: "0608", leakageCurrent: 13.9, esr: 80, ratedRippleCurrent: 1500, partNo: "630AVMA220M0608" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 33, sizeCode: "0810", leakageCurrent: 20.8, esr: 40, ratedRippleCurrent: 1700, partNo: "630AVMA330M0810" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 47, sizeCode: "0810", leakageCurrent: 29.6, esr: 40, ratedRippleCurrent: 1700, partNo: "630AVMA470M0810" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 47, sizeCode: "1010", leakageCurrent: 29.6, esr: 30, ratedRippleCurrent: 2100, partNo: "630AVMA470M1010" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 56, sizeCode: "1010", leakageCurrent: 35.3, esr: 30, ratedRippleCurrent: 1800, partNo: "630AVMA560M1010" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 68, sizeCode: "1010", leakageCurrent: 42.8, esr: 30, ratedRippleCurrent: 1800, partNo: "630AVMA680M1010" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 82, sizeCode: "1010", leakageCurrent: 51.7, esr: 30, ratedRippleCurrent: 1800, partNo: "630AVMA820M1010" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 100, sizeCode: "1010", leakageCurrent: 63, esr: 30, ratedRippleCurrent: 2400, partNo: "630AVMA101M1010" }, //
+      { series: "AVMA", wv: 63, sv: 72.5, cap: 100, sizeCode: "1012", leakageCurrent: 63, esr: 22, ratedRippleCurrent: 2100, partNo: "630AVMA101M1012" }, //
+      { series: "AVMA", wv: 80, sv: 92, cap: 22, sizeCode: "0810", leakageCurrent: 17.6, esr: 45, ratedRippleCurrent: 1550, partNo: "800AVMA220M0810" }, //
+      { series: "AVMA", wv: 80, sv: 92, cap: 33, sizeCode: "1010", leakageCurrent: 26.4, esr: 36, ratedRippleCurrent: 1700, partNo: "800AVMA330M1010" }, //
+      { series: "AVMA", wv: 80, sv: 92, cap: 47, sizeCode: "1010", leakageCurrent: 37.6, esr: 36, ratedRippleCurrent: 1700, partNo: "800AVMA470M1010" }, //
+
+      // ==========================================
+      // 3. 混血型直插系列 (ARME, ARMC, ARMA)
+      // ==========================================
+      // === ARME (完整版 38 筆) ===
+      { series: "ARME", wv: 25, sv: 28.8, cap: 100, sizeCode: "06X7", leakageCurrent: 25, esr: 30, ratedRippleCurrent: 1400, partNo: "250ARME101M06X7" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 150, sizeCode: "08X8", leakageCurrent: 37.5, esr: 22, ratedRippleCurrent: 1800, partNo: "250ARME151M08X8" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 220, sizeCode: "08X8", leakageCurrent: 55, esr: 22, ratedRippleCurrent: 1800, partNo: "250ARME221M08X8" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 270, sizeCode: "10X9", leakageCurrent: 67.5, esr: 20, ratedRippleCurrent: 2200, partNo: "250ARME271M10X9" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 330, sizeCode: "10X9", leakageCurrent: 82.5, esr: 20, ratedRippleCurrent: 2200, partNo: "250ARME331M10X9" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 470, sizeCode: "10A2", leakageCurrent: 117.5, esr: 16, ratedRippleCurrent: 2500, partNo: "250ARME471M10A2" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 560, sizeCode: "10X9", leakageCurrent: 140, esr: 20, ratedRippleCurrent: 2200, partNo: "250ARME561M10X9" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 560, sizeCode: "10A6", leakageCurrent: 140, esr: 15, ratedRippleCurrent: 2900, partNo: "250ARME561M10A6" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 680, sizeCode: "10A2", leakageCurrent: 170, esr: 16, ratedRippleCurrent: 2500, partNo: "250ARME681M10A2" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 820, sizeCode: "10A6", leakageCurrent: 205, esr: 11, ratedRippleCurrent: 4000, partNo: "250ARME821M10A6" }, //
+      { series: "ARME", wv: 25, sv: 28.8, cap: 1000, sizeCode: "10A6", leakageCurrent: 250, esr: 11, ratedRippleCurrent: 4000, partNo: "250ARME102M10A6" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 68, sizeCode: "06X7", leakageCurrent: 23.8, esr: 35, ratedRippleCurrent: 1400, partNo: "350ARME680M06X7" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 100, sizeCode: "08X8", leakageCurrent: 35, esr: 35, ratedRippleCurrent: 1400, partNo: "350ARME101M08X8" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 150, sizeCode: "08X8", leakageCurrent: 52.5, esr: 22, ratedRippleCurrent: 1800, partNo: "350ARME151M08X8" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 150, sizeCode: "10X9", leakageCurrent: 52.5, esr: 22, ratedRippleCurrent: 1800, partNo: "350ARME151M10X9" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 220, sizeCode: "10X9", leakageCurrent: 77, esr: 20, ratedRippleCurrent: 2200, partNo: "350ARME221M10X9" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 270, sizeCode: "10X9", leakageCurrent: 94.5, esr: 20, ratedRippleCurrent: 2200, partNo: "350ARME271M10X9" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 330, sizeCode: "10A2", leakageCurrent: 115.5, esr: 16, ratedRippleCurrent: 2500, partNo: "350ARME331M10A2" }, //
+      { series: "ARME", wv: 35, sv: 40.3, cap: 470, sizeCode: "10A6", leakageCurrent: 164.5, esr: 15, ratedRippleCurrent: 1100, partNo: "350ARME471M10A6" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 33, sizeCode: "06X7", leakageCurrent: 16.5, esr: 40, ratedRippleCurrent: 1100, partNo: "500ARME330M06X7" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 47, sizeCode: "08X8", leakageCurrent: 23.5, esr: 24, ratedRippleCurrent: 1500, partNo: "500ARME470M08X8" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 68, sizeCode: "08X8", leakageCurrent: 34, esr: 24, ratedRippleCurrent: 1500, partNo: "500ARME680M08X8" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 100, sizeCode: "10X9", leakageCurrent: 50, esr: 22, ratedRippleCurrent: 1800, partNo: "500ARME101M10X9" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 120, sizeCode: "10X9", leakageCurrent: 60, esr: 22, ratedRippleCurrent: 1800, partNo: "500ARME121M10X9" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 150, sizeCode: "10A2", leakageCurrent: 75, esr: 18, ratedRippleCurrent: 2200, partNo: "500ARME151M10A2" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 180, sizeCode: "10A2", leakageCurrent: 90, esr: 16, ratedRippleCurrent: 2500, partNo: "500ARME181M10A2" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 220, sizeCode: "10A6", leakageCurrent: 110, esr: 16, ratedRippleCurrent: 2500, partNo: "500ARME221M10A6" }, //
+      { series: "ARME", wv: 50, sv: 57.5, cap: 270, sizeCode: "10A6", leakageCurrent: 135, esr: 13, ratedRippleCurrent: 3800, partNo: "500ARME271M10A6" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 22, sizeCode: "06X7", leakageCurrent: 13.9, esr: 80, ratedRippleCurrent: 900, partNo: "630ARME220M06X7" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 33, sizeCode: "08X8", leakageCurrent: 20.8, esr: 24, ratedRippleCurrent: 1500, partNo: "630ARME330M08X8" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 47, sizeCode: "08X8", leakageCurrent: 29.6, esr: 24, ratedRippleCurrent: 1500, partNo: "630ARME470M08X8" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 56, sizeCode: "10X9", leakageCurrent: 35.3, esr: 22, ratedRippleCurrent: 1800, partNo: "630ARME560M10X9" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 68, sizeCode: "10X9", leakageCurrent: 42.8, esr: 22, ratedRippleCurrent: 1800, partNo: "630ARME680M10X9" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 82, sizeCode: "10X9", leakageCurrent: 51.7, esr: 22, ratedRippleCurrent: 2800, partNo: "630ARME820M10X9" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 100, sizeCode: "10A2", leakageCurrent: 63, esr: 18, ratedRippleCurrent: 2200, partNo: "630ARME101M10A2" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 120, sizeCode: "10A2", leakageCurrent: 75.6, esr: 18, ratedRippleCurrent: 2200, partNo: "630ARME121M10A2" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 150, sizeCode: "10A6", leakageCurrent: 94.5, esr: 16, ratedRippleCurrent: 2500, partNo: "630ARME151M10A6" }, //
+      { series: "ARME", wv: 63, sv: 72.5, cap: 180, sizeCode: "10A6", leakageCurrent: 113.4, esr: 10, ratedRippleCurrent: 3800, partNo: "630ARME181M10A6" }, //
+      { series: "ARME", wv: 80, sv: 92, cap: 22, sizeCode: "08X8", leakageCurrent: 17.6, esr: 45, ratedRippleCurrent: 1200, partNo: "800ARME220M08X8" }, //
+      { series: "ARME", wv: 80, sv: 92, cap: 47, sizeCode: "10X9", leakageCurrent: 37.6, esr: 35, ratedRippleCurrent: 1700, partNo: "800ARME470M10X9" } //
     ];
 
     const els = {
